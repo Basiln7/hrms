@@ -1223,11 +1223,12 @@ Answered on 23 Nov 2026 by approving the plan as written: 1 (a new, separate pro
 place: 3 and 5.
 
 Question 4 was answered on 24 Nov 2026: a git repository was started here on `main`, with a
-GitHub repository as `origin`. Its first commit holds `README.md` only, as instructed, and
-was pushed. **Nothing else is committed yet.** The GitHub repository is public, so what goes
-into the next commit is a decision of its own: sections 1.3 to 1.5 of this file describe
-other Delta projects, among them the older CRM's security findings, and should not be
-published as they stand.
+GitHub repository as `origin`. Its first commit holds `README.md` only, as instructed. The
+second holds everything else, published the same day on the owner's decision, with the
+repository public: that includes this file, whose sections 1.3 to 1.5 describe other Delta
+projects, and the development-only sample password in `backend/src/seed/demo.ts`. There is
+one commit for the whole build, not one per phase, because the repository was started after
+Phase 10.
 
 1. **The existing Delta HRMS** (the one the older CRM calls): is this a new, separate
    product (the plan's assumption), a future replacement for it, or was the work meant to
