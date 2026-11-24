@@ -1,0 +1,30 @@
+{
+  "name": "delta-hrms",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c blue,green \"npm run dev -w @delta-hrms/backend\" \"npm run dev -w @delta-hrms/frontend\"",
+    "dev:backend": "npm run dev -w @delta-hrms/backend",
+    "dev:frontend": "npm run dev -w @delta-hrms/frontend",
+    "build": "npm run build -w @delta-hrms/frontend",
+    "start": "npm run start -w @delta-hrms/backend",
+    "seed": "npm run seed -w @delta-hrms/backend --",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "qa": "npm run qa -w @delta-hrms/backend"
+  },
+  "devDependencies": {
+    "concurrently": "10.0.7",
+    "typescript": "7.0.2",
+    "vitest": "4.1.12"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,369 @@
+/* ==========================================================================
+   Leave: balances, requests, the request form's preview, policies
+   ========================================================================== */
+
+/* A kind of leave: a dot in its own colour, then its name in the normal ink. */
+.leave-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-weight: 600;
+}
+
+.leave-name > i,
+.balance-name > i {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--tone);
+}
+
+/* A leave-year chooser beside buttons keeps its own width. */
+.head-actions .select,
+.actions .select {
+  width: auto;
+  min-width: 140px;
+}
+
+.head-actions {
+  align-items: center;
+}
+
+/* ---------- balances ---------- */
+
+.balances {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.balances > li {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-width: 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--inset);
+  border: 1px solid var(--line);
+}
+
+.balances > li[data-archived] {
+  opacity: 0.75;
+}
+
+.balance-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 650;
+}
+
+.balance-name small {
+  margin-left: auto;
+  font-size: 11.5px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+}
+
+.balance-figure {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 640;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.balance-figure small {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--text-2);
+}
+
+/* What has been taken (solid) and what waiting requests hold (lighter), out of everything added. */
+.balance-meter {
+  display: flex;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: var(--track);
+}
+
+.balance-meter > i {
+  background: var(--tone);
+}
+
+.balance-meter > i[data-held] {
+  background: color-mix(in srgb, var(--tone) 45%, transparent);
+}
+
+.balance-made,
+.balance-rule {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+.balance-rule {
+  color: var(--text-3);
+}
+
+/* ---------- a request on one line ---------- */
+
+.leave-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-size: 14.5px;
+  font-weight: 650;
+}
+
+.leave-line .leave-days {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+/* ---------- the request form's preview ---------- */
+
+.leave-preview {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px dashed var(--line-strong);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+.leave-preview > b {
+  font-size: 15px;
+  color: var(--text);
+}
+
+.leave-preview[data-sound] {
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--accent-text) 45%, transparent);
+  background: color-mix(in srgb, var(--accent-text) 7%, transparent);
+}
+
+.leave-preview span b {
+  color: var(--text);
+}
+
+/* ---------- the home page's leave card ---------- */
+
+.leave-mini {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.leave-mini li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.leave-mini li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.leave-mini b {
+  flex: none;
+  font-weight: 650;
+}
+
+/* ---------- tabs ---------- */
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Tabs on the left, a control that belongs to them on the right, over one line. */
+.tabs-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tabs-row > .tabs {
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.tabs-row > .segmented {
+  margin-bottom: 8px;
+}
+
+.tabs > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  padding: 10px 14px;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.tabs > button:hover {
+  color: var(--text);
+}
+
+.tabs > button[aria-selected='true'] {
+  color: var(--text);
+  /* Drawn inside the tab, so the row of tabs never grows a scrollbar of its own. */
+  box-shadow: inset 0 -2px 0 var(--accent-text);
+}
+
+.tabs > button:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: -2px;
+  border-radius: 8px;
+}
+
+.tab-count {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 99px;
+  background: var(--track);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text-2);
+}
+
+.tabs > button[aria-selected='true'] .tab-count {
+  background: color-mix(in srgb, var(--accent-text) 18%, transparent);
+  color: var(--text);
+}
+
+/* ---------- a kind of leave's colour ---------- */
+
+.tone-pick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tone-pick > button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  background: var(--tone);
+  box-shadow: 0 0 0 1px var(--line-strong);
+  cursor: pointer;
+}
+
+.tone-pick > button[aria-checked='true'] {
+  box-shadow: 0 0 0 2px var(--text);
+}
+
+.tone-pick > button:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+}
+
+/* ---------- a policy's rules, one kind of leave after another ---------- */
+
+.policy-entries {
+  display: grid;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.policy-entry {
+  min-width: 0;
+  margin: 0;
+  padding: 12px 14px 14px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--tone);
+  border-radius: 12px;
+}
+
+.policy-entry[data-on='false'] {
+  border-left-color: var(--line-strong);
+  padding-bottom: 12px;
+}
+
+.policy-entry legend {
+  padding: 0 6px;
+  margin-left: -6px;
+}
+
+.policy-entry legend .check {
+  color: var(--text);
+  font-size: 14.5px;
+}
+
+.policy-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px 14px;
+  margin-top: 8px;
+}
+
+.policy-checks {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+@media (max-width: 640px) {
+  .policy-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .balances {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  .balance-figure {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 420px) {
+  .policy-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* A column of numbers has its heading over the numbers. */
+.table th.cell-end {
+  text-align: right;
+}

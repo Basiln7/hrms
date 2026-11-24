@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Delta HRMS — theme tokens
+   The same tokens as Delta CRM, so the two products look like one family.
+   [data-theme='dark'] and [data-theme='light'] swap the same names.
+
+   One deliberate difference from the CRM: --text-3, the faintest text, is deeper in the
+   light theme and lighter in the dark one. It is used for small labels and table headings,
+   and at the CRM's values it fell short of 4.5:1 against every background here.
+   ========================================================================== */
+
+:root {
+  --font-display: 'Bricolage Grotesque Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Figtree Variable', 'Segoe UI', system-ui, sans-serif;
+  --r-lg: 18px;
+  --r-md: 12px;
+  --r-sm: 8px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #eef2f1;
+  --side: #f7f9f8;
+  --surface: #ffffff;
+  --surface-hover: #f3f6f5;
+  --inset: #f1f4f3;
+  --track: #e3e9e7;
+  --line: rgba(23, 24, 33, 0.08);
+  --line-strong: rgba(23, 24, 33, 0.16);
+  --text: #171821;
+  --text-2: #565a6a;
+  --text-3: #686c7c;
+  --accent: #a9dfd8;
+  --accent-ink: #0f2b28;
+  --accent-text: #17796d;
+  --amber: #b96a0b;
+  --pink: #a9479f;
+  --blue: #0f7ab5;
+  --green: #23874a;
+  --red: #c93f3f;
+  --violet: #6d4fd0;
+  --orange: #c05a12;
+  --shadow: 0 24px 60px rgba(23, 24, 33, 0.16);
+  --scrim: rgba(23, 24, 33, 0.38);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #171821;
+  --side: #14151d;
+  --surface: #21222d;
+  --surface-hover: #292a37;
+  --inset: #171821;
+  --track: #2c2d3b;
+  --line: rgba(255, 255, 255, 0.07);
+  --line-strong: rgba(255, 255, 255, 0.13);
+  --text: #f3f4f6;
+  --text-2: #a4a7b5;
+  --text-3: #8f92a6;
+  --accent: #a9dfd8;
+  --accent-ink: #14201f;
+  --accent-text: #a9dfd8;
+  --amber: #feb95a;
+  --pink: #f2c8ed;
+  --blue: #20aef3;
+  --green: #86d99b;
+  --red: #f58686;
+  --violet: #b9a8f7;
+  --orange: #f6a361;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --scrim: rgba(8, 9, 14, 0.66);
+}
+
+:root {
+  /* A tone as words. The tones are chosen as fills (dots, bars, tints); as small text, alone or
+     on a tint of themselves, they are too pale in the light theme. Words use the tone deepened
+     towards the text colour, which reads at 4.5:1 or better on every background in both themes. */
+  --red-ink: color-mix(in srgb, var(--red) 65%, var(--text));
+  --amber-ink: color-mix(in srgb, var(--amber) 65%, var(--text));
+
+  /* Avatar tints, in order */
+  --c1: var(--accent-text);
+  --c2: var(--amber);
+  --c3: var(--pink);
+  --c4: var(--blue);
+}

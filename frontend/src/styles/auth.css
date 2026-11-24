@@ -1,0 +1,124 @@
+/* ---------- Sign in, first-run setup, choosing a password ---------- */
+
+.auth {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  background: var(--bg);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 428px;
+  padding: 30px 30px 26px;
+  border-radius: 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.auth-card.wide {
+  max-width: 560px;
+}
+
+.auth-card .brand {
+  padding: 0 0 26px;
+}
+
+.auth-card h1 {
+  font-size: 27px;
+  font-weight: 680;
+}
+
+.auth-card > p {
+  color: var(--text-2);
+  margin: 6px 0 22px;
+}
+
+.auth-form {
+  display: grid;
+  gap: 14px;
+}
+
+.auth-form .input,
+.auth-form .btn {
+  height: 46px;
+}
+
+.auth-form .input-icon .icon-btn {
+  top: 7px;
+}
+
+/* A heading inside a longer form: "The company", "You". */
+.auth-section {
+  margin-top: 6px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 620;
+}
+
+.auth-section:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.auth-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.auth-note {
+  margin-top: 20px;
+  padding: 11px 13px;
+  border-radius: 11px;
+  border: 1px dashed var(--line-strong);
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.auth-foot {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.auth-foot button {
+  color: var(--accent-text);
+  font-weight: 650;
+}
+
+.auth-foot button:hover {
+  text-decoration: underline;
+}
+
+.auth-theme {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+}
+
+.boot {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+}
+
+/* Normally the answer arrives before this is ever seen; it only fades in if the wait drags on. */
+.boot p {
+  color: var(--text-2);
+  opacity: 0;
+  animation: fill-in 0.4s ease 1.2s forwards;
+}
+
+@keyframes fill-in {
+  to {
+    opacity: 1;
+  }
+}

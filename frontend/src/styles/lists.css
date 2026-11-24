@@ -1,0 +1,354 @@
+/* ---------- Lists: toolbars, tables, loading rows ---------- */
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.back:hover {
+  color: var(--text);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.toolbar .input-icon {
+  flex: 1 1 220px;
+  max-width: 340px;
+}
+
+.toolbar .select {
+  width: auto;
+  min-width: 150px;
+  max-width: 100%;
+}
+
+/* A wide table scrolls sideways inside its card. The page itself never does. */
+.table-wrap {
+  /* Positioned, so that a heading meant for screen readers only (it is absolutely placed)
+     scrolls with the table instead of widening the whole page. */
+  position: relative;
+  overflow-x: auto;
+  margin: 0 -20px;
+  padding: 0 20px;
+}
+
+.table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.table.compact {
+  min-width: 520px;
+}
+
+.table th {
+  padding: 0 12px 10px;
+  text-align: left;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text-3);
+}
+
+.table td {
+  padding: 12px;
+  border-top: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.table th:first-child,
+.table td:first-child {
+  padding-left: 4px;
+}
+
+.table th:last-child,
+.table td:last-child {
+  padding-right: 4px;
+}
+
+.table tbody tr.clickable {
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.table tbody tr.clickable:hover {
+  background: var(--surface-hover);
+}
+
+.cell-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.cell-person a {
+  display: block;
+  font-weight: 600;
+}
+
+.cell-person a:hover {
+  text-decoration: underline;
+}
+
+.cell-person > div > span {
+  display: block;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.cell-none {
+  color: var(--text-3);
+}
+
+.cell-end {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+/* A grey bar where text will be, while a list is being fetched. */
+.skeleton {
+  display: block;
+  height: 13px;
+  border-radius: 6px;
+  background: var(--track);
+  animation: pulse 1.3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* Something could not be loaded: says so, and offers another try. */
+.load-error {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-2);
+}
+
+.load-error svg {
+  color: var(--red);
+}
+
+/* Two or three choices side by side, one of them chosen. */
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 11px;
+  background: var(--inset);
+  border: 1px solid var(--line);
+}
+
+.segmented button {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.segmented button[aria-pressed='true'] {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* A row of actions under a person's name. */
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.profile-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* A value shown once and meant to be copied: a temporary password. */
+.secret {
+  display: block;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px dashed var(--line-strong);
+  background: var(--inset);
+  font-family: ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', Consolas, monospace;
+  font-size: 21px;
+  letter-spacing: 0.08em;
+  text-align: center;
+  user-select: all;
+  overflow-wrap: anywhere;
+}
+
+/* A list of people with a tick box each. */
+.picker {
+  max-height: 280px;
+  overflow-y: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--inset);
+}
+
+.picker label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-top: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.picker label:first-child {
+  border-top: 0;
+}
+
+.picker label:hover {
+  background: var(--surface-hover);
+}
+
+.picker input {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent-text);
+}
+
+.picker b {
+  font-weight: 600;
+}
+
+.picker span {
+  margin-left: auto;
+  font-size: 12.5px;
+  color: var(--text-2);
+  text-align: right;
+}
+
+.picker-empty {
+  padding: 18px 12px;
+  text-align: center;
+  color: var(--text-3);
+}
+
+.picker-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 8px 0;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+/* What happened to each person after a bulk action. */
+.outcome {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.outcome li {
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--inset);
+  font-size: 13.5px;
+}
+
+.outcome li svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.outcome .ok svg {
+  color: var(--green);
+}
+
+.outcome .skipped svg {
+  color: var(--amber);
+}
+
+.outcome b {
+  font-weight: 600;
+}
+
+/* A row in a small editable list (departments). */
+.rows {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.rows li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rows .input {
+  flex: 1;
+}
+
+.rows .count {
+  flex: none;
+  min-width: 78px;
+  font-size: 12.5px;
+  color: var(--text-2);
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .table-wrap {
+    margin: 0 -16px;
+    padding: 0 16px;
+  }
+  .toolbar .input-icon {
+    max-width: none;
+  }
+  .toolbar .select {
+    flex: 1 1 140px;
+  }
+  .secret {
+    font-size: 18px;
+  }
+}

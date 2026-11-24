@@ -1,0 +1,100 @@
+/* ---------- Responsive ---------- */
+
+.only-mobile {
+  display: none;
+}
+
+@media (max-width: 1180px) {
+  .col-4,
+  .col-5,
+  .col-6,
+  .col-7,
+  .col-8 {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 256px;
+    transform: translateX(-102%);
+    /* Closed, the drawer is not only out of sight: the keyboard and screen readers pass it by. It stays visible until it has slid away. */
+    visibility: hidden;
+    transition:
+      transform 0.28s var(--ease),
+      visibility 0s linear 0.28s;
+  }
+  /* The shadow belongs to the open drawer only: on a closed one it would spill onto the page's edge. */
+  .shell[data-mobile-open='true'] .sidebar {
+    transform: none;
+    visibility: visible;
+    transition:
+      transform 0.28s var(--ease),
+      visibility 0s;
+    box-shadow: var(--shadow);
+  }
+  .side-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 35;
+    background: var(--scrim);
+    animation: fade 0.2s ease;
+  }
+  .only-mobile {
+    display: grid;
+  }
+  .only-desktop {
+    display: none !important;
+  }
+  .topbar {
+    padding: 12px 16px 10px;
+    gap: 8px;
+  }
+  .offline-bar {
+    padding: 8px 16px;
+  }
+  .content {
+    padding: 4px 16px 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .form-grid,
+  .facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .theme-options {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .page-head h1 {
+    font-size: 23px;
+  }
+  .card {
+    padding: 16px;
+  }
+  .auth-card {
+    padding: 24px 20px 22px;
+  }
+  .form-actions .btn {
+    flex: 1;
+  }
+  .toasts {
+    left: 16px;
+    right: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

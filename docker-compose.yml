@@ -1,0 +1,14 @@
+# Optional: a local MongoDB for development, for machines that do not have one installed.
+#   docker compose up -d
+# If MongoDB already runs on this machine, you do not need this (and port 27017 would clash).
+services:
+  mongo:
+    image: mongo:8
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - hrms-mongo-data:/data/db
+
+volumes:
+  hrms-mongo-data:

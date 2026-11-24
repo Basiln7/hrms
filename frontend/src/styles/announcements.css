@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Announcements: the list, one in full, and the form that writes one
+   ========================================================================== */
+
+.announcements {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.announcements > li + li {
+  border-top: 1px solid var(--line);
+}
+
+/* A whole row opens the announcement. */
+.announcement {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  /* The hover fill reaches a little past the text on both sides. */
+  width: calc(100% + 16px);
+  margin: 0 -8px;
+  padding: 14px 8px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.announcements > li:first-child .announcement {
+  padding-top: 4px;
+}
+
+.announcements > li:last-child .announcement {
+  padding-bottom: 4px;
+}
+
+.announcement:hover {
+  background: var(--surface-hover);
+}
+
+.announcement:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+.announcement-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--inset);
+  color: var(--text-3);
+}
+
+/* Not yet read: the icon takes the accent, the title is heavier, and a "New" badge says so in words. */
+.announcement[data-unread] .announcement-icon {
+  background: color-mix(in srgb, var(--accent-text) 16%, transparent);
+  color: var(--accent-text);
+}
+
+.announcement-main {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.announcement-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  font-size: 14.5px;
+}
+
+.announcement-title b {
+  font-weight: 550;
+  overflow-wrap: anywhere;
+}
+
+.announcement[data-unread] .announcement-title b {
+  font-weight: 700;
+}
+
+/* The start of the text, on two lines at most. */
+.announcement-preview {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+.announcement-meta {
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+/* The text in full, exactly as it was written: its line breaks kept, nothing read as markup. */
+.announcement-body {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ---------- the manage table ---------- */
+
+.announcement-cell {
+  min-width: 240px;
+  max-width: 420px;
+}
+
+.announcement-cell > b {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.announcement-cell > .badges {
+  margin: 4px 0 2px;
+}
+
+.announcement-cell > .badges:empty {
+  display: none;
+}
+
+/* ---------- the form ---------- */
+
+/* "Now" or "a date and time", then the time itself beside it. */
+.when {
+  display: grid;
+  gap: 8px;
+}
+
+/* A short list of things to tick. */
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.choices .check {
+  color: var(--text);
+}
+
+/* A row of small icon buttons at the end of a table row stays one row. */
+.row-actions {
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}

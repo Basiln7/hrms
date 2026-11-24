@@ -1,0 +1,221 @@
+/* ==========================================================================
+   Overview, attendance records and reports
+   ========================================================================== */
+
+/* ---------- the overview's numbers: each is a button that opens its list ---------- */
+
+.overview-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.tile-btn {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.15s var(--ease),
+    background 0.15s var(--ease);
+}
+
+.tile-btn:hover {
+  background: var(--surface-hover);
+}
+
+.tile-btn:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+.tile-btn > b {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 640;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+
+.tile-btn[data-main] > b {
+  font-size: 28px;
+  color: var(--text);
+}
+
+.tile-btn > span {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+/* The one whose list is shown: marked by its border and fill, and said by aria-pressed. */
+.tile-btn[aria-pressed='true'] {
+  border-color: var(--accent-text);
+  background: color-mix(in srgb, var(--accent-text) 10%, var(--surface));
+}
+
+.tile-btn[aria-pressed='true'] > span {
+  color: var(--text);
+}
+
+/* ---------- choosing a day ---------- */
+
+.date-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.date-step .input {
+  width: auto;
+}
+
+/* A date field with its word in front: "From", "To", "Month". */
+.dated {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.dated .input {
+  width: auto;
+}
+
+.toolbar .select {
+  width: auto;
+  min-width: 150px;
+}
+
+/* ---------- small things ---------- */
+
+.tiles.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Two tiles sit side by side: the rule that stretches a lone last tile is for rows of three. */
+.tiles.two > div {
+  grid-column: auto;
+}
+
+/* Who was late how often, in as many columns as fit. */
+.late-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0 28px;
+}
+
+.late-list > li:first-child {
+  padding-top: 12px;
+}
+
+.late-count {
+  flex: none;
+  font-size: 13.5px;
+  font-weight: 650;
+}
+
+/* The totals of a report stand apart from its rows. */
+.table tfoot th,
+.table tfoot td {
+  padding-top: 12px;
+  border-top: 2px solid var(--line-strong);
+  font-weight: 700;
+  text-align: left;
+}
+
+.table tfoot td.cell-end {
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .overview-tiles {
+    grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  }
+  .tile-btn[data-main] > b {
+    font-size: 24px;
+  }
+  .date-step {
+    flex-wrap: wrap;
+  }
+  .dated {
+    flex: 1 1 100%;
+  }
+  .dated .input {
+    flex: 1;
+  }
+  .toolbar .select {
+    flex: 1 1 140px;
+  }
+}
+
+/* ---------- the audit log ---------- */
+
+.audit-what {
+  min-width: 280px;
+  overflow-wrap: anywhere;
+}
+
+.audit-what .cell-sub.badges {
+  display: flex;
+  margin-top: 6px;
+}
+
+.audit-what .cell-sub.badges:empty {
+  display: none;
+}
+
+/* The row that opens under an action: everything the log kept about it. */
+.audit-more > td {
+  padding-top: 4px;
+  background: var(--inset);
+}
+
+.audit-details {
+  display: grid;
+  gap: 12px;
+  max-width: 100%;
+}
+
+.audit-change {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.audit-change h4 {
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* What was kept, as text: it wraps, and scrolls when it is long. */
+.audit-change pre {
+  max-height: 320px;
+  margin: 0;
+  padding: 12px 14px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,93 @@
+/* ---------- Modal & toasts ---------- */
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: var(--scrim);
+  backdrop-filter: blur(4px);
+  animation: fade 0.18s ease;
+  overflow-y: auto;
+}
+
+.modal {
+  width: 100%;
+  max-width: var(--modal-w, 560px);
+  border-radius: 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  animation: pop 0.24s var(--ease);
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 4px;
+}
+
+.modal-head h2 {
+  font-size: 20px;
+  font-weight: 640;
+}
+
+.modal-body {
+  padding: 14px 20px 6px;
+}
+
+.modal-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 20px 20px;
+}
+
+.toasts {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 200;
+  display: grid;
+  gap: 8px;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 15px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow);
+  font-weight: 550;
+  animation: pop 0.25s var(--ease);
+}
+
+.toast svg {
+  color: var(--green);
+}
+
+.toast[data-tone='error'] svg {
+  color: var(--red);
+}
+
+
+.toast-action {
+  margin-left: 6px;
+  padding: 4px 11px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.toast-action:hover {
+  filter: brightness(1.06);
+}

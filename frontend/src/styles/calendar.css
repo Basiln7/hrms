@@ -1,0 +1,459 @@
+/* ---------- Calendars: the month of attendance, holidays, a day in full ---------- */
+
+/* Back and forward through years. */
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stepper b {
+  min-width: 3.4rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Back, the month, the year, forward: one row, on a phone too. */
+.toolbar.month-bar .select {
+  min-width: 0;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 550;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent-text);
+}
+
+/* The month as a grid of days. */
+.cal {
+  display: grid;
+  gap: 6px;
+}
+
+.cal-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.cal-head span {
+  padding: 0 4px 2px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.cal-cell {
+  min-width: 0;
+  min-height: 94px;
+  border-radius: 12px;
+}
+
+/* A day that does not count for this person: before their first schedule, or after they left. */
+.cal-cell[data-off] {
+  padding: 8px 10px;
+  border: 1px dashed var(--line);
+  color: var(--text-3);
+}
+
+.cal-day {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  width: 100%;
+  height: 100%;
+  min-height: 94px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--inset);
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.cal-day:hover {
+  border-color: var(--line-strong);
+  background: var(--surface-hover);
+}
+
+.cal-num {
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Today is outlined, and says so in its number's colour as well. */
+.cal-cell[data-today] .cal-day {
+  border-color: var(--accent-text);
+  box-shadow: inset 0 0 0 1px var(--accent-text);
+}
+
+.cal-cell[data-today] .cal-num {
+  color: var(--accent-text);
+}
+
+.cal-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  font-size: 12px;
+  font-weight: 650;
+  color: color-mix(in srgb, var(--tone, var(--text-2)) 65%, var(--text));
+}
+
+.cal-status svg {
+  flex: none;
+}
+
+.cal-status span,
+.cal-times,
+.cal-marks,
+.cal-note {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cal-times,
+.cal-marks,
+.cal-note {
+  font-size: 11.5px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.cal-marks {
+  font-weight: 600;
+  color: var(--amber-ink);
+}
+
+/* On a wide screen the calendar and the list take turns. On a narrow one the list sits under the calendar. */
+@media (min-width: 901px) {
+  .att[data-view='calendar'] .att-list,
+  .att[data-view='list'] .att-grid {
+    display: none;
+  }
+}
+
+.att-grid {
+  margin-bottom: 18px;
+}
+
+/* A day in full. */
+.day-detail {
+  display: grid;
+  gap: 14px;
+}
+
+.day-detail .subhead {
+  margin: 4px 0 -4px;
+}
+
+.history {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.history li {
+  display: flex;
+  gap: 12px;
+}
+
+.history b {
+  flex: none;
+  min-width: 3.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.history span {
+  color: var(--text-2);
+}
+
+/* Holidays: a person's year, and the next few on the home page. */
+.holiday-list,
+.upcoming,
+.people-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.holiday-list li {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px 16px;
+  padding: 13px 12px;
+  border-top: 1px solid var(--line);
+}
+
+.holiday-list li:first-child {
+  border-top: 0;
+}
+
+.holiday-list li[data-past='true'] b,
+.holiday-list li[data-past='true'] span {
+  color: var(--text-3);
+}
+
+.holiday-list li[data-next='true'] {
+  border-radius: 12px;
+  border-top-color: transparent;
+  background: color-mix(in srgb, var(--accent-text) 9%, transparent);
+}
+
+.holiday-list li[data-next='true'] + li {
+  border-top-color: transparent;
+}
+
+.holiday-date b,
+.holiday-main b,
+.upcoming b {
+  display: block;
+  font-weight: 620;
+}
+
+.holiday-date span,
+.holiday-main span,
+.upcoming span {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.holiday-next {
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+  color: var(--accent-text);
+}
+
+.upcoming li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+.upcoming li:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.upcoming li:last-child {
+  padding-bottom: 0;
+}
+
+.upcoming .badge {
+  flex: none;
+}
+
+/* Who is on a calendar. */
+.people-list {
+  gap: 11px;
+}
+
+.people-list a {
+  display: block;
+  font-weight: 600;
+}
+
+.people-list a:hover {
+  text-decoration: underline;
+}
+
+.people-list span {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+/* A second line under a table cell's main text. */
+.cell-sub {
+  display: block;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+/* What changing the past would do, line by line. */
+.effect-lines {
+  display: grid;
+  gap: 4px;
+}
+
+@media (max-width: 760px) {
+  .toolbar.month-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .toolbar.month-bar .select {
+    flex: 1 1 0;
+    width: auto;
+  }
+  .toolbar.month-bar .btn {
+    flex: 1 1 100%;
+  }
+  .cal,
+  .cal-week {
+    gap: 4px;
+  }
+  .cal-head span {
+    padding: 0;
+    text-align: center;
+  }
+  .cal-cell,
+  .cal-day {
+    min-height: 56px;
+  }
+  .cal-cell[data-off] {
+    padding: 6px 2px;
+    text-align: center;
+  }
+  /* Short labels: the number and the icon. The words are in the list underneath. */
+  .cal-day {
+    align-items: center;
+    gap: 4px;
+    padding: 6px 2px;
+  }
+  .cal-status span,
+  .cal-times,
+  .cal-marks,
+  .cal-note {
+    display: none;
+  }
+  .holiday-list li {
+    grid-template-columns: 5.2rem minmax(0, 1fr);
+    padding: 12px 8px;
+  }
+  .holiday-list .badges {
+    grid-column: 2;
+  }
+}
+
+/* ---------- Corrections: a request, a day on one line, the way to one from Home ---------- */
+
+.day-line {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+/* Words someone else wrote: a reason, a note. Shown as theirs. */
+.quote {
+  padding-left: 10px;
+  border-left: 2px solid var(--line-strong);
+  font-weight: 450;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+.facts > .full {
+  grid-column: 1 / -1;
+}
+
+.request .facts {
+  padding-top: 16px;
+  margin-top: 0;
+}
+
+.person-main a:hover {
+  text-decoration: underline;
+}
+
+.note b {
+  display: block;
+  color: var(--text);
+}
+
+.note p {
+  margin: 4px 0;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.request-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.request-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.request-list li:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.request-list li:last-child {
+  padding-bottom: 0;
+}
+
+.request-list li > div {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.request-list li > div > .link {
+  justify-self: start;
+  font-size: 14.5px;
+}
+
+.request-list li > div > span {
+  font-size: 13px;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+.request-list .badge,
+.request-list .btn {
+  flex: none;
+}
+
+.today-more {
+  margin-top: 14px;
+}
+
+.today-more .link {
+  white-space: normal;
+}
+
+.history li > span {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .request-list li {
+    flex-wrap: wrap;
+  }
+  .request-list li > div {
+    flex-basis: 100%;
+  }
+}

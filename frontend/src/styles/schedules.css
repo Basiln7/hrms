@@ -1,0 +1,225 @@
+/* ---------- Schedules: the rules form, the plain-words summary, a person's schedule ---------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.schedule-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.schedule-card .card-head {
+  margin-bottom: 0;
+}
+
+.schedule-card .headline {
+  color: var(--text-2);
+}
+
+.schedule-card .actions {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.schedule-card[data-archived='true'] {
+  opacity: 0.7;
+}
+
+/* The form on the left, what it means on the right. */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.split > .sticky {
+  position: sticky;
+  top: 80px;
+  display: grid;
+  gap: 18px;
+}
+
+.rules-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.rules-section:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.rules-section h3 {
+  font-size: 15.5px;
+  font-weight: 620;
+}
+
+.rules-section > p {
+  margin: 3px 0 14px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.form-grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Hours and minutes side by side: "7 h 30 min". */
+.duration {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.duration .input {
+  width: 62px;
+  padding: 0 6px;
+  text-align: center;
+}
+
+.duration span {
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.week {
+  display: grid;
+  gap: 8px;
+}
+
+.week-row {
+  display: grid;
+  grid-template-columns: 104px 180px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.week-row > b {
+  font-weight: 600;
+}
+
+.week-row .week-note {
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+/* A day with hours of its own opens a small form under its row. */
+.week-own {
+  grid-column: 1 / -1;
+  padding: 14px;
+  margin-bottom: 4px;
+  border-radius: 12px;
+  background: var(--inset);
+  border: 1px solid var(--line);
+}
+
+.plain-words {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plain-words li {
+  display: flex;
+  gap: 9px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.plain-words svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--accent-text);
+}
+
+.plain-words .warn {
+  padding: 9px 11px;
+  margin: 0 -11px;
+  border-radius: 10px;
+  color: var(--amber-ink);
+  background: color-mix(in srgb, var(--amber) 12%, transparent);
+  font-weight: 550;
+}
+
+.plain-words .warn svg {
+  color: var(--amber);
+}
+
+/* A schedule that has not started yet. */
+.planned {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  margin-top: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--inset);
+}
+
+.planned > div > b {
+  display: block;
+  font-weight: 600;
+}
+
+.planned > div > span {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+/* A badge or button beside the text keeps its own size, also when the row stacks on a phone. */
+.planned > .badge,
+.planned > .btn {
+  flex: none;
+  align-self: center;
+}
+
+.subhead {
+  margin: 20px 0 10px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+@media (max-width: 1100px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .split > .sticky {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .form-grid.three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .week-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  }
+  .week-row .week-note {
+    grid-column: 1 / -1;
+  }
+  .planned {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .planned > .badge,
+  .planned > .btn {
+    align-self: flex-start;
+  }
+}

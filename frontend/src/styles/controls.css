@@ -1,0 +1,274 @@
+/* ---------- Buttons, inputs, badges ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 11px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 650;
+  white-space: nowrap;
+  transition: transform 0.15s var(--ease), filter 0.15s, background 0.15s;
+}
+
+.btn:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: none;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn.ghost {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.btn.ghost:hover {
+  background: var(--surface-hover);
+  filter: none;
+}
+
+.btn.on-surface {
+  background: var(--inset);
+}
+
+.btn.danger {
+  background: color-mix(in srgb, var(--red) 16%, transparent);
+  color: var(--red-ink);
+}
+
+.btn.block {
+  width: 100%;
+}
+
+.btn.sm {
+  height: 34px;
+  padding: 0 12px;
+  font-size: 13.5px;
+  border-radius: 9px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.field-required {
+  color: var(--red-ink);
+}
+
+.field-aside {
+  font-weight: 450;
+  color: var(--text-3);
+}
+
+.field-error {
+  font-size: 12.5px;
+  color: var(--red-ink);
+}
+
+.field-hint {
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--inset);
+  color: var(--text);
+  outline: 0;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.textarea {
+  height: auto;
+  min-height: 84px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--accent-text);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-text) 18%, transparent);
+}
+
+.input[aria-invalid='true'],
+.select[aria-invalid='true'] {
+  border-color: var(--red);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-3);
+}
+
+.input:disabled,
+.select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.select {
+  appearance: none;
+  padding-right: 34px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a8e9c' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon > svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-3);
+  pointer-events: none;
+}
+
+.input-icon .input {
+  padding-left: 38px;
+}
+
+.input-icon .icon-btn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.input-icon .icon-btn + .input,
+.input-icon:has(.icon-btn) .input {
+  padding-right: 44px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-grid .full {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-2);
+  cursor: pointer;
+  font-size: 13.5px;
+}
+
+.check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent-text);
+}
+
+.form-error {
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  color: var(--red-ink);
+  background: color-mix(in srgb, var(--red) 12%, transparent);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+  /* The tone itself is too light to read at this size on a tint of itself: the words are the tone deepened towards the text colour. */
+  color: color-mix(in srgb, var(--tone, var(--text-2)) 65%, var(--text));
+  background: color-mix(in srgb, var(--tone, var(--text-2)) 14%, transparent);
+}
+
+.badge i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge.plain {
+  color: var(--text);
+  background: var(--inset);
+  font-weight: 600;
+}
+
+.badge.plain i {
+  width: 8px;
+  height: 8px;
+  background: var(--tone);
+}
+
+.avatar {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--tone, var(--text-2)) 65%, var(--text));
+  background: color-mix(in srgb, var(--tone) 18%, transparent);
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 14px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.pager > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
